@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# from accounts.managers import UserManager
+from accounts.managers import UserManager
 
 
 class Account(AbstractUser):
@@ -25,7 +25,7 @@ class Account(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    # objects = UserManager()
+    objects = UserManager()
 
     class Meta:
         verbose_name = 'Профиль'
