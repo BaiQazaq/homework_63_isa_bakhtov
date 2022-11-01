@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create post
+{% endblock %}
+{% block header %}
+<h1>New post</h1>
+{% endblock %}
+{% block content %}
+    <form action="{% url 'post_creation' %}" method="POST">
+        {% csrf_token %}
+        <div class="form">
+            {% include 'partial/create_form.html' with button_text='Create'%}
+        </div>
+    </form>
+{% endblock %}
+{% block link %}
+{% endblock %}

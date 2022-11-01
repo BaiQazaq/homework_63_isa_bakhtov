@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title%}Posts{% endblock %}
+
+{% block header %}
+    <h1>Posts</h1>
+{% endblock %}
+
+{% block content %}
+{% comment %} {% include 'partial/simple_search.html' %} {% endcomment %}
+    {% for posts in posts %}
+    <div class="wrapper">
+        <h4>Summary - {{ post.image }}</h2>
+        <p>Task id - {{ post.description }}</p>
+        <p>Status - {{ post.author }}</p>
+    
+        {% comment %} <p><a href="{% url 'task_render' task.pk %}">View detail</a></p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'task_edit' task.pk %}">Edit task</a>
+            <span>|</span>
+            <a href="{% url 'delete' task.pk %}">Delete task</a>
+        {% endif %} {% endcomment %}
+    </div>
+    {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif%}
+{% endblock%}
+{% block link %}
+{% endblock%}
