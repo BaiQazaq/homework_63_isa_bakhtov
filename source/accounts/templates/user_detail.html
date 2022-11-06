@@ -22,7 +22,7 @@
 
     {% endif %}
 
-    <p>Имя пользователя: {{ user_obj.email }}</p>
+    <p>Имя пользователя: {{ user_obj.username }}</p>
 
     <p>Имя: {{ user_obj.first_name }}</p>
 
@@ -31,6 +31,8 @@
     <p>Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
 
     <p>Почта: {{ user_obj.email }}</p>
+
+    <p>Пол: {{ user_obj.gender }}</p>
 
 
 

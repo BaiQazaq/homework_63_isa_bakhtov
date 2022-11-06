@@ -15,7 +15,7 @@ class Account(AbstractUser):
     avatar = models.ImageField(
         null=True,
         blank=True,
-        upload_to='avatars',
+        upload_to='avatars/',
         verbose_name='Аватар'
     )
     birthday = models.DateField(
