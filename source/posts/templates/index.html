@@ -7,12 +7,14 @@
 {% endblock %}
 
 {% block content %}
+<h1> This is main page</h1>
 {% comment %} {% include 'partial/simple_search.html' %} {% endcomment %}
-    {% for posts in posts %}
+    {% for post in posts %}
     <div class="wrapper">
-        <h4>Summary - {{ post.image }}</h2>
-        <p>Task id - {{ post.description }}</p>
-        <p>Status - {{ post.author }}</p>
+        <img src='{{ post.image }}' style="width: 180px">
+        <p>{{post.image}}</p>
+        <p>Description - {{ post.description }}</p>
+        <p>Author - {{ post.author }}</p>
     
         {% comment %} <p><a href="{% url 'task_render' task.pk %}">View detail</a></p>
         {% if user.is_authenticated %}

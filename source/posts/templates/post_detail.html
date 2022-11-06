@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  Post {{ post.pk }}
+{% endblock%}
+
+{% block header %}
+  <h1>About the post {{ post.pk }}</h1>
+{% endblock %}
+
+{% block content %}
+  <p><b>Image:</b>  {{ post.image }}</p>
+  <p><b>Description:</b>  {{ post.description }}</p>
+  <p>Users count {{ project.projects_user.count }}</p>
+  {% for user in project.projects_user.all %}
+    <p> {{ user.user }}</p>
+  {% endfor %}
+{% endblock %}
+
+{% block link %}
+<p><a href="{% url 'delete_user_from_project' project.pk %}">Delete user</a></p>
+{% endblock %}

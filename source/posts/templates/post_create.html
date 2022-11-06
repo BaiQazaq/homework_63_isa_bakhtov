@@ -7,7 +7,7 @@
 <h1>New post</h1>
 {% endblock %}
 {% block content %}
-    <form action="{% url 'post_creation' %}" method="POST">
+    <form action="{% url 'post_creation' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form">
             {% include 'partial/create_form.html' with button_text='Create'%}
