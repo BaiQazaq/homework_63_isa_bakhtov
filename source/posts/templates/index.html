@@ -8,20 +8,22 @@
 
 {% block content %}
 <h1> This is main page</h1>
-{% comment %} {% include 'partial/simple_search.html' %} {% endcomment %}
+{% include 'partial/search.html' %}
     {% for post in posts %}
     <div class="wrapper">
-        <img src='{{ post.image }}' style="width: 180px">
-        <p>{{post.image}}</p>
+        <img src='{{ post.image.url }}' style="width: 180px">
         <p>Description - {{ post.description }}</p>
         <p>Author - {{ post.author }}</p>
-    
+        <p>Comment - {{ post.post }}
         {% comment %} <p><a href="{% url 'task_render' task.pk %}">View detail</a></p>
         {% if user.is_authenticated %}
             <a href="{% url 'task_edit' task.pk %}">Edit task</a>
             <span>|</span>
             <a href="{% url 'delete' task.pk %}">Delete task</a>
         {% endif %} {% endcomment %}
+        {% for comment in comments %}
+           <p>{{ comment }}</p>
+        {% endfor %}
     </div>
     {% endfor %}
     {% if is_paginated %}

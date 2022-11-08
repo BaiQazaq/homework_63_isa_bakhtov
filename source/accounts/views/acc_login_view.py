@@ -21,20 +21,22 @@ class LoginView(TemplateView):
         form = self.form(request.POST)
         user_db = Account.objects.filter(is_active=True)
         user_input=request.POST['email']
-        
-        # print("USERS=====", type(user_db[0]))
-        # print("REQUEST POST ++++++",request.POST['email'], type(user_input))
-        # print("SRAVNENIE",user_db[0] == user_input)
-        if str(user_db[0]) == user_input:
-            print("TRUE+"*4)
-        else:
-            print("FALSE+"*4)
+        # print("REQUEST POST ==", request.POST)
+        # print("USERS=====", user_db)
+        # for user in user_db:
+        #     print("USER CYCLE",str(user))
+        #     if str(user) == user_input:
+        #         print("TRUE+"*4)
+        #     else:
+        #         print("FALSE+"*4)
         if not form.is_valid():
             return redirect('login')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
         next = form.cleaned_data.get('next')
+        print("REQUEST+++REQUSET", request)
         user = authenticate(request, email=email, password=password)
+        print("USER", user)
         if not user:
             return redirect('login')
         login(request, user)

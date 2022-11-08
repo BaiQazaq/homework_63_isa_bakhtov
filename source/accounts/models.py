@@ -27,17 +27,23 @@ class Account(AbstractUser):
     liked_posts = models.ManyToManyField(
         verbose_name='Понравившиеся публикации',
         to='posts.Post',
-        related_name='user_likes'
+        related_name='user_likes',
+        null=True,
+        blank=True
     )
     subscriptions = models.ManyToManyField(
         verbose_name='Подписки',
         to='accounts.Account',
-        related_name='subscribers'
+        related_name='subscribers',
+        null=True,
+        blank=True
     )
     commented_posts = models.ManyToManyField(
         verbose_name='Прокомментированные публикации',
         to='posts.Post',
-        related_name='user_comments'
+        related_name='user_comments',
+        null=True,
+        blank=True
     )
     user_info = models.CharField(
         verbose_name='Информация о пользователе',
