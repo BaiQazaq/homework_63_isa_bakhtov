@@ -1,6 +1,6 @@
 from django import forms
 
-from posts.models import Post, Comment
+from posts.models import Post, Comment, Like
 
 
 
@@ -23,4 +23,13 @@ class CommentForm(forms.ModelForm):
         fields = ['text']
         help_texts = {
                     'text' : ('Please keep mutual respect')
+            }
+        
+
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = Like
+        fields = ['mark']
+        help_texts = {
+                    'mark' : ('Like or dislike')
             }

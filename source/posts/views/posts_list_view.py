@@ -3,7 +3,7 @@ from django.db.models import Q
 from urllib.parse import urlencode
 # from django.contrib.auth.models import User
 
-from posts.forms import SearchForm, CommentForm
+from posts.forms import SearchForm, CommentForm, LikeForm
 from posts.models import Comment, Post
 from accounts.models import Account
 
@@ -48,6 +48,7 @@ class PostView(ListView):
         context = super(PostView, self).get_context_data(object_list=object_list, **kwargs)
         posts = self.get_queryset().exclude(is_deleted=True)
         posts_id = posts.values('id')
+        context['like_form'] = LikeForm()
         comments = []
         for i in posts_id:
             id = int(i['id'])

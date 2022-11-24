@@ -23,6 +23,7 @@
       <p>No comments yet.</p>
     {% endfor %}
   </div>
+  <p>Marks - {{ post.likes.count }}</p>
   
   {% comment %} <p>Users count {{ project.projects_user.count }}</p>
   {% for user in project.projects_user.all %}

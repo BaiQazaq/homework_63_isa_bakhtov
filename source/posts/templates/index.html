@@ -15,12 +15,19 @@
         <p>Description - {{ post.description }}</p>
         <p>Author - {{ post.author }}</p>
         <p>Comments - {{ post.comments.count }}</p>
+        <p>Marks - {{ post.likes.count }}</p>
         <a href="{% url 'post_detail' post.pk %}">View detail</a></p>
+        
+        
+        {% if user.is_authenticated %}
+            {% include 'partial/like_add.html' %}
+        {% endif %}
         {% comment %} {% if user.is_authenticated %}
             <a href="{% url 'task_edit' task.pk %}">Edit task</a>
             <span>|</span>
             <a href="{% url 'delete' task.pk %}">Delete task</a>
         {% endif %} {% endcomment %}
+        
         {% for comment in comments %}
            <p>{{ comment }}</p>
         {% endfor %}

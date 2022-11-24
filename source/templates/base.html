@@ -23,20 +23,15 @@
           <div class="navbar" id="navbarsExample07">
             <ul class="navbar-nav mr-auto">
               {% if user.is_authenticated %}
-                  <li class="nav-item">
-                  {% if user.role.name == 'Работодатель' %}
-                      <a href="{% url 'account_detail' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
-                 {% else %}
-                        <a href="{% url 'post_creation' %}" class="btn btn my-2 text-white">Добавить публикацию</a>
-                      <a href="{% url 'profile' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
-                  {% endif %}
-                  </li>
+                <a href="{% url 'post_creation' %}" class="btn btn my-2 text-white">Добавить публикацию</a>
+                <a href="{% url 'profile' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
+                </li>
                   <li class="nav-item">
                      <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <input type="submit" class="btn btn my-2 text-white" value="Выход">
                       </form>
-                  </li>
+                </li>
               {% else %}
               <a href="{% url 'login' %}" class="btn btn my-2 text-white">Войти</a>
               <a href="{% url 'register' %}" class="btn btn my-2 text-white" >Зарегестрироваться</a>

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import TextChoices
 
 
 class Post(models.Model):
@@ -28,10 +29,15 @@ class Comment(models.Model):
     def __str__(self):
         return self.text[:30]
 
+class StatusChoices(TextChoices):
+    LIKE = 'Like'
+    DISLIKE = 'Dislike'
 
-# class Like(models.Model):
-#     liked_by = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='likes', null=False,
-#                                blank=False,
-#                                on_delete=models.CASCADE)
-#     post = models.ForeignKey(verbose_name='Публикация', to='posts.Post', related_name='likes', null=False,
-#                              blank=False, on_delete=models.CASCADE)
+
+class Like(models.Model):
+    mark = models.CharField(verbose_name='Mark', choices=StatusChoices.choices, max_length=100, default=StatusChoices.LIKE)
+    liked_by = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='likes', null=False,
+                               blank=False,
+                               on_delete=models.CASCADE)
+    post = models.ForeignKey(verbose_name='Публикация', to='posts.Post', related_name='likes', null=False,
+                             blank=False, on_delete=models.CASCADE)

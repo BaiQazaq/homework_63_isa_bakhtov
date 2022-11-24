@@ -1,0 +1,11 @@
+{% load static  %}
+{% load django_bootstrap5 %}
+
+
+<p>{{ text }}</p>
+<form class="cart-add w-25" action="{% url 'like_add' post.pk  %}" method="POST">
+    {% csrf_token %}
+    
+    {% bootstrap_form like_form %}
+    {% bootstrap_button button_type="submit" content='Add like' %}
+</form>
