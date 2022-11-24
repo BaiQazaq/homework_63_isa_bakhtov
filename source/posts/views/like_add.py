@@ -27,7 +27,6 @@ class LikeAddView(LoginRequiredMixin, CreateView):
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
         liked_by = self.request.user
         form = self.get_form_class()(request.POST)
-        print("++++++", post, "=====", liked_by)
         if form.is_valid():
             mark = form.cleaned_data.get('mark')
             if not Like.objects.filter(post=post, liked_by=liked_by, mark=mark).exists():

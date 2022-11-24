@@ -13,17 +13,8 @@
   <img src='{{ post.image.url }}' style="width: 180px">
   <p><b>Description:</b>  {{ post.description }}</p>
   <p>Author - {{ post.author }}</p>
-  <div class='comment-list'>
-    {% for comment in comments %}
-    <div class='comment'>
-      <p>Commented by{{ comment.author }}</p> 
-      <div class="pre">{{ comment.text}}</div>
-    </div>
-    {% empty %}
-      <p>No comments yet.</p>
-    {% endfor %}
-  </div>
   <p>Marks - {{ post.likes.count }}</p>
+  <p>Comments count - {{ post.comments.count }}</p>
   
   {% comment %} <p>Users count {{ project.projects_user.count }}</p>
   {% for user in project.projects_user.all %}
@@ -31,6 +22,20 @@
   {% endfor %} {% endcomment %}
   <div>
     {% include 'partial/comment.html'  with action_url="" form_method="post" %}
+    </div>
+
+  <div class='comment-list'>
+    <h3>Comments</h3>
+    <p>=======================================</p>
+      {% for comment in comments %}
+      <div class='comment'>
+        <p>Commented by{{ comment.author }}</p> 
+        <div class="pre">{{ comment.text}}</div>
+        <p>=======================================</p>
+      </div>
+      {% empty %}
+        <p>No comments yet.</p>
+      {% endfor %}
     </div>
 {% endblock %}
 

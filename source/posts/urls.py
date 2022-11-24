@@ -4,7 +4,7 @@ from posts.views.post_create_view import PostCreate
 from posts.views.posts_list_view import PostView
 from posts.views.post_detail_view import PostDetailView
 from posts.views.comment_create_view import CommentCreateView
-from posts.views.like_add import LikeAddView#, like
+from posts.views.like_add import LikeAddView
 
 urlpatterns = [
     path("", PostView.as_view(), name='index'),

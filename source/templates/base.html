@@ -25,13 +25,12 @@
               {% if user.is_authenticated %}
                 <a href="{% url 'post_creation' %}" class="btn btn my-2 text-white">Добавить публикацию</a>
                 <a href="{% url 'profile' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
-                </li>
                   <li class="nav-item">
                      <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <input type="submit" class="btn btn my-2 text-white" value="Выход">
                       </form>
-                </li>
+                  </li>
               {% else %}
               <a href="{% url 'login' %}" class="btn btn my-2 text-white">Войти</a>
               <a href="{% url 'register' %}" class="btn btn my-2 text-white" >Зарегестрироваться</a>
@@ -41,19 +40,7 @@
         </div>
     </nav>
 
-
-
-
-
-{% comment %} <nav class="navbar">
-    <div class="container">
-        <ul class="menu">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            {% comment %} <li><a href="{% 'profile' %}">Profile</a></li> 
-        </ul>
-    </div>
-</nav>
-<div class="container"> {% endcomment %}
+<div class="container"> 
     {% block content %}{% endblock %}
 </div>
 </body>
