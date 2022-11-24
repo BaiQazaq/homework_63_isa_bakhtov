@@ -14,9 +14,9 @@
         <img src='{{ post.image.url }}' style="width: 180px">
         <p>Description - {{ post.description }}</p>
         <p>Author - {{ post.author }}</p>
-        <p>Comment - {{ post.post }}
-        {% comment %} <p><a href="{% url 'task_render' task.pk %}">View detail</a></p>
-        {% if user.is_authenticated %}
+        <p>Comments - {{ post.comments.count }}</p>
+        <a href="{% url 'post_detail' post.pk %}">View detail</a></p>
+        {% comment %} {% if user.is_authenticated %}
             <a href="{% url 'task_edit' task.pk %}">Edit task</a>
             <span>|</span>
             <a href="{% url 'delete' task.pk %}">Delete task</a>

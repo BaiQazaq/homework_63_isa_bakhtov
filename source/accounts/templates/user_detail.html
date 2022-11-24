@@ -21,6 +21,7 @@
         <img class="avatar" src="{{ user_obj.avatar.url }}" width="250" height="250" alt="user picture">
 
     {% endif %}
+    <img src='{{ user_obj.image.url }}' style="width: 100px">
     <p>Имя пользователя: {{ user_obj.username }} </p>
 
     <p>Имя: {{ user_obj.first_name }}</p>
@@ -42,7 +43,13 @@
 
 
     <h2 class="text-center clear">Избранные публикации:</h2>
-
-    {% include 'index.html' %}
+    {% for post in posts %}
+        <div>
+            <p>Post</p>
+            <img src='{{ post.image.url }}' style="width: 50px">
+            <p>{{ post.description }}</p>
+            <p>{{ post.created_at }}</p>
+        </div>
+    {% endfor %}
 
 {% endblock %}

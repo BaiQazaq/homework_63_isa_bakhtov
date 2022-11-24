@@ -7,19 +7,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <title>{% block title %} Blog {% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
-<nav class="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a href="{% url 'index' %}" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Instagram</strong>
+          </a>
+          
+          <div class="navbar" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+              {% if user.is_authenticated %}
+                  <li class="nav-item">
+                  {% if user.role.name == 'Работодатель' %}
+                      <a href="{% url 'account_detail' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
+                 {% else %}
+                        <a href="{% url 'post_creation' %}" class="btn btn my-2 text-white">Добавить публикацию</a>
+                      <a href="{% url 'profile' user.pk %}" class="nav-link text-white"><i class="bi bi-person" style="font-size: 3rem"></i></a>
+                  {% endif %}
+                  </li>
+                  <li class="nav-item">
+                     <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn my-2 text-white" value="Выход">
+                      </form>
+                  </li>
+              {% else %}
+              <a href="{% url 'login' %}" class="btn btn my-2 text-white">Войти</a>
+              <a href="{% url 'register' %}" class="btn btn my-2 text-white" >Зарегестрироваться</a>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+
+
+
+
+{% comment %} <nav class="navbar">
     <div class="container">
         <ul class="menu">
             <li><a href="{% url 'index' %}">Home</a></li>
-            {% comment %} <li><a href="{% 'profile' %}">Profile</a></li> {% endcomment %}
+            {% comment %} <li><a href="{% 'profile' %}">Profile</a></li> 
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container"> {% endcomment %}
     {% block content %}{% endblock %}
 </div>
 </body>

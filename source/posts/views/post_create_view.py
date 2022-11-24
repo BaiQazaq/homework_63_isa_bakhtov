@@ -14,16 +14,17 @@ class PostCreate(LoginRequiredMixin, CreateView):
     
     def post(self, request, *args, **kwargs):
         form = self.get_form_class()(request.POST, request.FILES)
+        print("+++++++", request, "========", request.POST, "++++++", self.request)
         
         if form.is_valid():
             description = form.cleaned_data.get('description')
             image = form.cleaned_data.get('image')
             author = request.user
             if not Post.objects.filter(description=description).exists():
-                Post.objects.create(description=description, image=image, author=author)
+                post = Post.objects.create(description=description, image=image, author=author)
         else:
             form = {'text' : 'Smth went wrong, post did not create'}
-        return redirect('index')
+        return redirect('post_detail', pk = post.id)
     
     
     def get_success_url(self):
