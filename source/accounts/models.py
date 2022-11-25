@@ -1,6 +1,7 @@
 from django.db.models import TextChoices
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
 from accounts.managers import UserManager
 
@@ -32,7 +33,7 @@ class Account(AbstractUser):
     )
     subscriptions = models.ManyToManyField(
         verbose_name='Подписки',
-        to='accounts.Account',
+        to='accounts.Subs',
         related_name='subscribers',
         blank=True
     )
@@ -74,3 +75,17 @@ class Account(AbstractUser):
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+        
+
+class StatusChoices(TextChoices):
+    SUBS = 'Subscribing'
+
+
+class Subs(models.Model):
+    mark = models.CharField(verbose_name='Subscription', choices=StatusChoices.choices, max_length=100, default=StatusChoices.SUBS)
+    subscriber = models.ForeignKey(verbose_name='Подписчик', to=get_user_model(), related_name='abone', null=False,
+                               blank=False,
+                               on_delete=models.CASCADE)
+    # bloger = models.ForeignKey(verbose_name='Автор', to='accounts.Account', related_name='abone', null=False,
+    #                            blank=False,
+    #                            on_delete=models.CASCADE)

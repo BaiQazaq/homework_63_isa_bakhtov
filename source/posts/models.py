@@ -41,3 +41,7 @@ class Like(models.Model):
                                on_delete=models.CASCADE)
     post = models.ForeignKey(verbose_name='Публикация', to='posts.Post', related_name='likes', null=False,
                              blank=False, on_delete=models.CASCADE)
+    
+
+
+

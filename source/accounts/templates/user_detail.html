@@ -36,20 +36,33 @@
 
     <p>Понравившиеся посты {{ user_obj.liked_posts.count }}
     
-    <p>Подписки {{ user_obj.subscriptions.count }}
+    {% comment %} <p>Подписки {{ user_obj.subscriptions.count }} {% endcomment %}
     
     <p>Публикации {{user_obj.posts.count }}
+    
+    {% comment %} <div>
+        {% include 'partial/subscription.html'  with action_url="" form_method="post" %}
+    </div> {% endcomment %}
 
 
 
-    <h2 class="text-center clear">Избранные публикации:</h2>
-    {% for post in posts %}
-        <div>
-            <p>Post</p>
-            <img src='{{ post.image.url }}' style="width: 50px">
-            <p>{{ post.description }}</p>
-            <p>{{ post.created_at }}</p>
-        </div>
-    {% endfor %}
+    <h2 class="text-center clear">Посты:</h2>
+        {% for post in posts %}
+            <div>
+                <p>Post</p>
+                <img src='{{ post.image.url }}' style="width: 50px">
+                <p>{{ post.description }}</p>
+                <p>{{ post.created_at }}</p>
+            </div>
+        {% endfor %}
+    {% comment %} <h2 class="text-center clear">Пoдписки:</h2>
+        {% for sub in subs %}
+            <div>
+                <p>Post</p>
+                <img src='{{ sub.image.url }}' style="width: 50px">
+                <p>{{ sub.description }}</p>
+                <p>{{ sub.created_at }}</p>
+            </div>
+        {% endfor %} {% endcomment %}
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from accounts.models import Subs
 
 
 class LoginForm(forms.Form):
@@ -40,3 +41,13 @@ class UserChangeForm(forms.ModelForm):
         model = get_user_model()
         fields = ('first_name', 'last_name', 'email', 'avatar', 'birthday')
         labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+        
+        
+class SubsForm(forms.ModelForm):
+    class Meta:
+        model = Subs
+        fields = ['mark']
+        help_texts = {
+                    'mark' : ('you can subscribe')
+            }
+        

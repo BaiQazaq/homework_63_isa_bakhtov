@@ -15,11 +15,8 @@
   <p>Author - {{ post.author }}</p>
   <p>Marks - {{ post.likes.count }}</p>
   <p>Comments count - {{ post.comments.count }}</p>
+  <p>Subs - {{ post.subs.count }}</p>
   
-  {% comment %} <p>Users count {{ project.projects_user.count }}</p>
-  {% for user in project.projects_user.all %}
-    <p> {{ user.user }}</p>
-  {% endfor %} {% endcomment %}
   <div>
     {% include 'partial/comment.html'  with action_url="" form_method="post" %}
     </div>
@@ -37,8 +34,4 @@
         <p>No comments yet.</p>
       {% endfor %}
     </div>
-{% endblock %}
-
-{% block link %}
-<p><a href="{% url 'delete_user_from_project' post.pk %}">Delete user</a></p>
 {% endblock %}

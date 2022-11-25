@@ -14,6 +14,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PostDetailView, self).get_context_data(object_list=object_list, **kwargs)
         context['comment_form'] = CommentForm()
+        # context['subscription_form'] = SubsForm()
         post = self.object
         comments = post.comments.order_by('author')
         context['comments'] = comments

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from posts.models import Post
+from posts.models import Post, Comment, Like
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -12,3 +12,6 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ("id", "created_at", "changed_at")
 
 admin.site.register(Post, PostAdmin)
+
+admin.site.register(Comment)
+admin.site.register(Like)

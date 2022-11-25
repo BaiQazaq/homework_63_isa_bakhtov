@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title%}Posts{% endblock %}
+
+{% block header %}
+    <h1>Posts</h1>
+{% endblock %}
+
+{% block content %}
+<h1>List of bloger</h1>
+{% include 'partial/search.html' %}
+    {% for user in users %}
+    <div class="wrapper">
+        {% comment %} <img src='{{ user.avatar.url }}' style="width: 180px"> {% endcomment %}
+        <p>Email - {{ user.email }}</p>
+        <a href="{% url 'profile' user.pk %}">View detail</a></p>
+        
+        
+        {% comment %} {% if user.is_authenticated %}
+            {% include 'partial/subscription.html' %}
+        {% endif %} {% endcomment %}
+
+    </div>
+    {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif%}
+{% endblock%}
+{% block link %}
+{% endblock%}

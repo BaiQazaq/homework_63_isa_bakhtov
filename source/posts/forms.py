@@ -33,3 +33,5 @@ class LikeForm(forms.ModelForm):
         help_texts = {
                     'mark' : ('Like or dislike')
             }
+        
+        
